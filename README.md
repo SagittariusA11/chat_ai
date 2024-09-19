@@ -1,7 +1,5 @@
 # Chat AI
 
-![Chat AI Banner](https://github.com/SagittariusA11/chat_ai/blob/main/assets/banner.png)
-
 **Chat AI** is a robust, scalable, and interactive chat application that leverages advanced AI capabilities to deliver seamless user experiences. Built with a modern tech stack and deployed using cutting-edge serverless infrastructure, Chat AI ensures high performance, reliability, and maintainability.
 
 ## Table of Contents
