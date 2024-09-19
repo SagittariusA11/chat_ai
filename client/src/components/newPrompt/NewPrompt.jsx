@@ -18,9 +18,9 @@ const NewPrompt = ({ data }) => {
 
   const chat = model.startChat({
     history: data?.history?.map(({ role, parts }) => ({
-      role: role || 'user',  // Default role to 'user' if undefined
+      role: role || 'user',
       parts: [{ text: parts[0]?.text }],
-    })) || [],  // Handle case when history is not present
+    })) || [],
     generationConfig: {
       // maxOutputTokens: 100,
     },
