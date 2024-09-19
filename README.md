@@ -497,19 +497,3 @@ Contributions are welcome! Follow these steps to contribute to Chat AI:
 
    Navigate to the original repository and click **Compare & pull request**.
 
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
-## Contact
-
-For any inquiries or support, please contact:
-
-- **Name:** Your Name
-- **Email:** your.email@example.com
-- **LinkedIn:** [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- **GitHub:** [https://github.com/SagittariusA11](https://github.com/SagittariusA11)
-
----
-
-© 2024 Chat AI. All rights reserved.
