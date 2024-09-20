@@ -18,20 +18,33 @@ const __dirname = path.dirname(__filename);
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
-    preflightContinue: true,
-    accessControlAllowCredentials:true,
-    credentials: false,
+    origin: process.env.CLIENT_URL, // Make sure this matches the front-end URL exactly
+    credentials: true, // Must be true if you're using credentials like cookies
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
-    allowedHeaders: 'Content-Type,Authorization,Access-Control-Allow-Origin'
+    allowedHeaders: 'Content-Type,Authorization',
+    preflightContinue: true,
   })
 );
+
+app.use((req, res, next) => {
+  // Allow credentials in cross-origin requests
+  res.header("Access-Control-Allow-Credentials", "true");
+
+  // Set allowed origin. Make sure this matches the requesting front-end URL.
+  res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL || "https://chat-ai-rouge-eight.vercel.app");
+
+  // Optionally set other CORS headers (allowed headers, methods)
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+
+  // Continue to the next middleware/route handler
+  next();
+});
 
 app.use(express.json());
 
 app.get('/api/hello', (req, res) => {
   res.json({ greeting: 'Hello from the backend!' });
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 });
 
 const connect = async () => {
