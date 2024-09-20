@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: #0e0c16;
 
   hr {
     border: none;
@@ -21,7 +22,9 @@
   .list {
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
+    scrollbar-color: #2c2937 #0e0c16;
+    scrollbar-width: thin;
   }
 
   a {
