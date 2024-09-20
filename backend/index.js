@@ -20,6 +20,7 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL,
     preflightContinue: true,
+    accessControlAllowCredentials:true,
     credentials: false,
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type,Authorization,Access-Control-Allow-Origin'
