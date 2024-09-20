@@ -1,14 +1,23 @@
 import { Link } from "react-router-dom";
 import "./chatList.css";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@clerk/clerk-react";
 
 const ChatList = () => {
+  const { getToken } = useAuth();
+
   const { isPending, error, data } = useQuery({
     queryKey: ["userChats"],
-    queryFn: () =>
-      fetch(`${import.meta.env.VITE_API_URL}/api/userchats`, {
+    queryFn: async () => {
+      const token = await getToken(); 
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/userchats`, {
         credentials: "include",
-      }).then((res) => res.json()),
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.json();
+    },
   });
 
   return (
@@ -16,7 +25,6 @@ const ChatList = () => {
       <span className="title">DASHBOARD</span>
       <Link to="/dashboard">Create a new Chat</Link>
       <Link to="/">Explore CHAT AI</Link>
-      {/* <Link to="/">Contact</Link> */}
       <hr />
       <span className="title">RECENT CHATS</span>
       <div className="list">
@@ -29,14 +37,6 @@ const ChatList = () => {
                 {chat.title}
               </Link>
             ))}
-      </div>
-      <hr />
-      <div className="upgrade">
-        <img src="/logo.png" alt="" />
-        <div className="texts">
-          <span>Upgrade to CHAT AI Pro</span>
-          <span>Get unlimited access to all features</span>
-        </div>
       </div>
     </div>
   );

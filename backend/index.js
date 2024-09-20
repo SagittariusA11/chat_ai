@@ -1,4 +1,4 @@
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import path from "path";
@@ -9,7 +9,7 @@ import Chat from "./models/chat.js";
 import UserChats from "./models/userChats.js";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 
-// dotenv.config();
+dotenv.config();
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -161,10 +161,10 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   }
 });
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(401).send("Unauthenticated!");
-});
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(401).send("Unauthenticated!");
+// });
 
 // PRODUCTION
 app.use(express.static(path.join(__dirname, "../client/dist")));
