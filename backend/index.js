@@ -31,6 +31,7 @@ app.use(express.json());
 
 app.get('/api/hello', (req, res) => {
   res.json({ greeting: 'Hello from the backend!' });
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 });
 
 const connect = async () => {
