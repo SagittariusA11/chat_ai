@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import path from "path";
@@ -9,7 +8,6 @@ import Chat from "./models/chat.js";
 import UserChats from "./models/userChats.js";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 
-dotenv.config();
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -24,10 +22,6 @@ app.use(
 );
 
 app.use(express.json());
-
-app.get('/api/hello', (req, res) => {
-  res.json({ greeting: 'Hello from the backend!' });
-});
 
 const connect = async () => {
   try {
@@ -106,17 +100,12 @@ app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
   try {
     const userChats = await UserChats.find({ userId });
 
-    if (!userChats.length) {
-      return res.status(200).send([]);
-    }
-
     res.status(200).send(userChats[0].chats);
   } catch (err) {
     console.log(err);
     res.status(500).send("Error fetching userchats!");
   }
 });
-
 
 app.get("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
@@ -177,5 +166,3 @@ app.listen(port, () => {
   connect();
   console.log("Server running on 3000");
 });
-
-// module.exports = app;

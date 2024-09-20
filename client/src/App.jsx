@@ -1,27 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { getHello } from './api';
-
-function App() {
-  const [greeting, setGreeting] = useState('');
-
-  useEffect(() => {
-    const fetchGreeting = async () => {
-      try {
-        const data = await getHello();
-        setGreeting(data.greeting);
-      } catch (error) {
-        setGreeting('Failed to fetch greeting.');
-      }
-    };
-
-    fetchGreeting();
-  }, []);
-
+const App = () => {
   return (
-    <div className="App">
-      <h1>{greeting}</h1>
-    </div>
-  );
+    <div>Hello World</div>
+  )
 }
 
-export default App;
+export default App

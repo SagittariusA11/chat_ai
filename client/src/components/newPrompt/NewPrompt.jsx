@@ -17,10 +17,12 @@ const NewPrompt = ({ data }) => {
   });
 
   const chat = model.startChat({
-    history: data?.history?.map(({ role, parts }) => ({
-      role: role,
-      parts: [{ text: parts[0]?.text }],
-    })),
+    history: [
+      data?.history.map(({ role, parts }) => ({
+        role,
+        parts: [{ text: parts[0].text }],
+      })),
+    ],
     generationConfig: {
       // maxOutputTokens: 100,
     },
@@ -114,6 +116,7 @@ const NewPrompt = ({ data }) => {
 
   return (
     <>
+      {/* ADD NEW CHAT */}
       {img.isLoading && <div className="">Loading...</div>}
       {img.dbData?.filePath && (
         <IKImage
